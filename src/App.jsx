@@ -1,35 +1,36 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
 
-function App() {
-  const [count, setCount] = useState(0)
+const HelloConsole = () => {
+  const [name, setName] = useState("");
+  const [displayName, setDisplayName] = useState("");
+
+  const handleChange = (event) => {
+    setName(event.target.value);
+  };
+
+  const handleClick = () => {
+    setDisplayName(name);
+    console.log(`Hello: ${name}`);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="p-4">
+      <input
+        type="text"
+        value={name}
+        onChange={handleChange}
+        placeholder="Nhập tên của bạn"
+        className="border p-2 rounded"
+      />
+      <button 
+        onClick={handleClick} 
+        className="ml-2 p-2 bg-blue-500 text-white rounded">
+        Hiển thị tên
+      </button>
+      {displayName && <p className="mt-2">Hello: {displayName}</p>}
+    </div>
+  );
+};
 
-export default App
+export default HelloConsole;
+
